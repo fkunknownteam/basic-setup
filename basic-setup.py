@@ -1,14 +1,10 @@
-import requests
-
-import requests
 import os
-import time
-import signal
  
 os.system('clear')
  
 os.system(' xdg-open https://github.com/fkunknownteam')
 os.system('clear')
+
 print ('Allow the Button For Access the Storage in Termux')
 os.system('termux-setup-storage')
 os.system('apt update')
