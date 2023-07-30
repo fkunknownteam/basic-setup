@@ -1,3 +1,5 @@
+  import os, time, sys
+  os.system('clear')
   os.system('https://github.com/fkunknownteam')
   os.system('clear')
   print ('Allow the Button For Access the Storage in Termux')
