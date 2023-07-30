@@ -1,4 +1,6 @@
 os.system('https://github.com/fkunknownteam')
+  os.system('clear')
+  print ('Allow the Button For Access the Storage in Termux')
   os.system('termux-setup-storage')
   os.system('apt update')
   os.system('pkg update ')
