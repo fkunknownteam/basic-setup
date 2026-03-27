@@ -2,38 +2,39 @@ import os
 
 os.system('clear')
 
-os.system('xdg-open https://github.com/fkunknownteam')
-
 print('Allow the Button For Access the Storage in Termux')
 os.system('termux-setup-storage')
-os.system('apt update -y')
-os.system('pkg update -y')
-os.system('pkg upgrade -y') 
-os.system('pkg install git -y')
-os.system('pkg install python -y')
-os.system('pkg install python2 -y')
-os.system('pkg install python3 -y')
-os.system('pkg install curl -y')
-os.system('pkg install zip -y')
-os.system('pkg install php -y')
-os.system('pkg install zsh -y')  
-os.system('pkg install ruby -y')
-os.system('pkg install nano -y')
-os.system('pkg install httping -y')
-os.system('pkg install wget -y')
-os.system('pkg install bash -y')
-os.system('pip install --upgrade httpie')  
-os.system('pip install --upgrade pip setuptools')
-os.system('pip install bs4 -y')
-os.system('pip install mechanize -y')
-os.system('pip install php -y')
-os.system('pip2 install requests -y')
-os.system('pip2 install mechanize -y')
-os.system('pip2 install php -y')
-os.system('pip2 install wget -y')
-os.system('apt install openjdk-17-jdk -y')  
-os.system('pip install future -y')
-os.system('pkg install figlet -y')
+
+# Auto-handle all interactive prompts
+os.environ['DEBIAN_FRONTEND'] = 'noninteractive'
+
+cmds = [
+    'apt update -y',
+    'apt upgrade -o Dpkg::Options::="--force-confold" -y',  # <-- fixes openssl.cnf prompt
+    'pkg update -y',
+    'pkg upgrade -o Dpkg::Options::="--force-confold" -y',  # <-- fixes openssl.cnf prompt
+    'pkg install git -y',
+    'pkg install python -y',
+    'pkg install python2 -y',
+    'pkg install python3 -y',
+    'pkg install curl -y',
+    'pkg install zip -y',
+    'pkg install php -y',
+    'pkg install zsh -y',
+    'pkg install ruby -y',
+    'pkg install nano -y',
+    'pkg install httping -y',
+    'pkg install wget -y',
+    'pkg install bash -y',
+    'pkg install figlet -y',
+    'pkg install openjdk-17 -y',
+    'pip install --upgrade pip setuptools httpie',
+    'pip install bs4 mechanize future',
+    'pip2 install requests mechanize wget',
+]
+
+for cmd in cmds:
+    os.system(f'DEBIAN_FRONTEND=noninteractive {cmd}')
+
 os.system('clear')
-os.system('exit')
-os.system('cd && rm -rf basic-setup')
+os.system('cd && rm -rf basic-setup && cd $HOME')
