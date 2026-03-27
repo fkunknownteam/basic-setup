@@ -21,7 +21,6 @@ clear()
 print("[+] Allow storage permission...")
 run('termux-setup-storage')
 
-# Optional: open GitHub
 run('xdg-open https://github.com/fkunknownteam')
 
 # -------------------- SYSTEM UPDATE --------------------
@@ -31,7 +30,6 @@ run_apt('pkg update -y')
 run_apt('pkg upgrade -y')
 
 # -------------------- INSTALL PACKAGES --------------------
-# Fixed: removed 'pkg install' from inside string, pass just the package name
 packages = [
     'git', 'python', 'curl', 'wget', 'zip', 'unzip', 'tar',
     'php', 'zsh', 'nano', 'vim', 'bash', 'figlet', 'toilet',
@@ -44,28 +42,17 @@ for package in packages:
 # -------------------- PYTHON SETUP --------------------
 pip_packages = [
     '--upgrade pip setuptools wheel',
-    'requests',
-    'urllib3',
-    'bs4',
-    'mechanize',
-    'colorama',
-    'tqdm',
-    'flask',
-    'rich',
-    'httpie',
-    'pyfiglet',
-    'fake-useragent',
-    'dnspython'
+    'requests', 'urllib3', 'bs4', 'mechanize',
+    'colorama', 'tqdm', 'flask', 'rich',
+    'httpie', 'pyfiglet', 'fake-useragent', 'dnspython'
 ]
 
 for pkg in pip_packages:
     run(f'pip install {pkg}')
 
-# -------------------- CLEANUP --------------------
 print("\n[+] Cleaning setup folder...")
 
 home = os.path.expanduser("~")
-os.chdir(home)
 
 folder_path = os.path.join(home, "basic-setup")
 
@@ -78,7 +65,9 @@ if os.path.exists(folder_path):
 else:
     print("[!] Folder not found, skipping...")
 
-# -------------------- DONE --------------------
+os.chdir(home)                 
+os.system(f'cd {home}')
+
 clear()
 print("""
 ███████╗███████╗████████╗██╗   ██╗██████╗ 
@@ -90,4 +79,4 @@ print("""
 """)
 
 print("[✓] Termux Setup Completed Successfully!")
-print("[✓] Current Path:", os.getcwd())
+print(f"[✓] Current Path: {os.getcwd()}")   
